@@ -1,13 +1,13 @@
 package app
 
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives.complete
 import akka.http.scaladsl.server.Route
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
+import io.circe.generic.auto._
 
 class TodoApp {
 
-  def todo(): Route = {
-    complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Todo</h1>"))
-  }
+  case class Todo(title: String)
 
+  def todo(): Route = complete(Todo("hoge"))
 }
